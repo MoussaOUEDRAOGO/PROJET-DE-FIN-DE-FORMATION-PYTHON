@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+  <title>Add Post</title>
+
+  <!-- CSS personnalisé -->
+  <style>
+    .custom-navbar {
+      background-color: #4CAF50; 
+    }
+
+    /* Texte des liens et de la marque */
+    .custom-navbar .navbar-brand,
+    .custom-navbar .nav-link {
+      color: white !important; 
+      font-weight: bold;
+    }
+
+    /* Survol des liens */
+    .custom-navbar .nav-link:hover {
+      color: yellow !important; 
+    }
+
+    /* Bouton Search 
+    .btn-outline-success {
+      background-color: white; 
+      color: #4CAF50;         
+      border: 2px solid #4CAF50;
+    }
+
+    .btn-outline-success:hover {
+      background-color: #4CAF50; 
+      color: white;               
+    }
+
+    /* Barre de recherche */
+    form .form-control:focus {
+      background-color: white;s
+      outline: none;
+    }
+    #formFileSm {
+  background-color: #4CAF50; 
+  color: white;              
+  border: 2px solid #4CAF50; 
+}
+
+#addForm .form-control {
+  border: 3px outset #19c71fff;
+  background-color: white;    
+  color: black;               
+  border-radius: 5px;         
+  padding: 5px 10px;          
+}
+
+/* Quand on clique dedans (focus) */
+.form-control:focus {
+  border: 2px solid #4CAF50; 
+  outline: none;              
+  background-color: #f9fff9;  
+}
+
+  </style>
+</head>
+
+<body>
+
+  <div id="part1">
+    <nav class="navbar navbar-expand-lg custom-navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand custom-brand" href="#">AEBM Blog</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+          aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarScroll">
+          <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./add.html" tabindex="-1">Add</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+  <div id="part3">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <form name="addForm" id="addForm" method="POST" action="{{ url_for('addpost') }}" enctype="multipart/form-data"
+            novalidate>
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" placeholder="Title" name="title" id="title" required
+                  data-validation-required-message="Please enter a title.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label for="author">Author</label>
+                <input type="text" class="form-control" placeholder="Author" name="author" id="author" required
+                  data-validation-required-message="Please enter the author name.">
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
+            <div class="control-group">
+              <div class="form-group floating-label-form-group controls">
+                <label for="content">Blog Content</label>
+                <textarea rows="5" class="form-control" placeholder="Blog content" name="content" id="content" required
+                  data-validation-required-message="Please enter a message."></textarea>
+                <p class="help-block text-danger"></p>
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="formFileSm" class="form-label">File input</label>
+              <input class="form-control form-control-sm" id="formFileSm" name="file" type="file">
+            </div>
+
+            <br>
+            <div id="success"></div>
+            <div class="form-group">
+              <button type="submit" class="btn btn-success" id="sendMessageButton">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+
+</body>
+</html>

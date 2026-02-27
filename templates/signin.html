@@ -1,0 +1,180 @@
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>sign up</title>
+    </head>
+    <body class="body">
+        <form class="signup modal-content animate" action="/signin" method="post">
+            <label for="username"><b>Username</b></label>
+            <input
+                type="text"
+                placeholder="Enter Username"
+                name="username"
+                id="username"
+                required
+            /><b></b>
+            <label class="mail" for="email"><b>Email</b></label>
+            <input
+                type="email"
+                placeholder="Enter Email"
+                name="email"
+                id="email"
+                required
+            /><b></b>
+
+            <label class="pass" for="password"><b>Password</b></label>
+            <input
+                type="password"
+                placeholder="Enter Password"
+                name="password"
+                id="password"
+                required
+            /><b></b>
+
+            <label for="password"><b>Confirm Password</b></label>
+            <input
+                type="password"
+                placeholder="Confirm Password"
+                name="confirmpassword"
+                id="confirmpassword">
+                required
+            /><b></b>
+
+            <button id="Register" label="submit"><b>Sign up</b></button>
+            <button
+                style="background-color: #ff4d4d; margin-top: 10px; width: 70px"
+                type="button"
+                onclick="window.location.href='/'"
+            >
+                Cancel
+            </button>
+
+            <div id="errors" style="color: red; margin-top: 10px; display: none"></div>
+        </form>
+        <style>
+            .body {
+                height: 100%;
+                width: 100%;
+                border-radius: 50px; /* même bordure que le form */
+                animation: change 5s infinite alternate;
+                background-size: cover;
+                background-position: center;
+                z-index: 1; /* derrière le contenu */
+            }
+            .signup {
+                height: 400px;
+                width: 90%;
+                max-width: 400px;
+                margin: 50px auto;
+                padding: 40px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                border-radius: 50px;
+                border: 1px solid #ccc;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+                background-color: white;
+            }
+
+            @keyframes change {
+                0% {
+                    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ1rfyL35ggTRZ29zGvTR4ihwKloOUDuRmRg&s');
+                }
+                50% {
+                    background-image: url('https://media.licdn.com/dms/image/v2/D4E22AQF915Kz1_uVyw/feedshare-shrink_800/B4EZTL1XTDHUAk-/0/1738586552386?e=2147483647&v=beta&t=n4y3v7RuV5shIUcXmXbohVj2QbDwcmnrbsnaCnc6fbQ');
+                }
+                100% {
+                    background-image: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQ1rfyL35ggTRZ29zGvTR4ihwKloOUDuRmRg&s');
+                }
+            }
+
+            .animate {
+                -webkit-animation: animatezoom 0.6s;
+                animation: animatezoom 0.6s;
+            }
+            #errors {
+                color: #ff4d4d;
+                font-weight: bold;
+                font-size: 14px;
+                margin-top: 5px;
+            }
+
+            @-webkit-keyframes animatezoom {
+                from {
+                    -webkit-transform: scale(0);
+                }
+                to {
+                    -webkit-transform: scale(1);
+                }
+            }
+
+            @keyframes animatezoom {
+                from {
+                    transform: scale(0);
+                    opacity: 0;
+                }
+                to {
+                    transform: scale(1);
+                    opacity: 1;
+                }
+            }
+            /* Inputs */
+            input {
+                padding: 10px; /* espace à l'intérieur */
+                border: 1px solid #ccc;
+                border-radius: 5px; /* coins arrondis */
+            }
+
+            /* Quand on clique dans l'input */
+            input:focus {
+                border-color: #04aa6d; /* bordure verte */
+                outline: none; /* retire le contour par défaut du navigateur */
+            }
+
+            /* Bouton */
+            button {
+                background-color: #04aa6d;
+                color: white;
+                border-radius: 5px;
+            }
+
+            /* Effet au survol du bouton */
+            button:hover {
+                background-color: #039f60;
+            }
+        </style>
+        <script>
+            const form = document.querySelector('.signup');
+            const errDiv = document.getElementById('errors');
+            const name = document.getElementById('username');
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const confirm_Password = document.getElementById('confirmpassword');
+
+            form.addEventListener('submit', (e) => {
+                let errors = [];
+                errDiv.style.display = 'none';
+                errDiv.innerHTML = '';
+
+                // Vérifications
+                if (name.value.trim() === '') errors.push('Fill out username');
+                if (email.value.trim() === '') errors.push('Fill out email');
+                if (password.value.trim() === '') errors.push('Fill out password');
+                if (confirm_Password.value.trim() === '')
+                    errors.push('Confirm your password');
+                if (password.value.trim() !== confirm_Password.value.trim())
+                    errors.push('Passwords do not match');
+
+                if (errors.length > 0) {
+                    e.preventDefault(); // Empêche l’envoi si erreurs
+                    errDiv.innerHTML = errors.map((err) => '• ' + err).join('<br>');
+                    errDiv.style.display = 'block';
+                }
+            });
+        </script>
+    </body>
+</html>
+<p>Already have an account? 
+    <a href="{{ url_for('home') }}">Sign Up</a>
+</p>
